@@ -1,6 +1,6 @@
 {
   "name": "lock-taskqueue",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A super simple locking mechanism. Works like a task queue.",
   "main": "Lock.js",
   "scripts": {

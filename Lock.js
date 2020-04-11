@@ -1,4 +1,4 @@
-class TaskQueue {
+function LockTaskQueue() {
     queue = [];
     isRunning = false;
     
@@ -8,23 +8,25 @@ class TaskQueue {
                 try { resolve(await task()); }
                 catch (error) { reject(error); }
             };
-            this.queue.push(taskWrapper);
-            this.runNextInQueue();
+            queue.push(taskWrapper);
+            runNextInQueue();
         })
     }
 
     runNextInQueue = async function () {
-        if(this.isRunning) return;
-        if(!this.queue.length) return;
+        if(isRunning) return;
+        if(!queue.length) return;
         try {
-            this.isRunning = true;
-            var task = this.queue.splice(0,1)[0];
+            isRunning = true;
+            var task = queue.splice(0,1)[0];
             await task();
         } finally {
-        	this.isRunning = false;
-            this.runNextInQueue();
+        	isRunning = false;
+            runNextInQueue();
         }
     }
+
+    return run;
 }
 
-module.exports = () => new TaskQueue().run
+module.exports = () => LockTaskQueue()
