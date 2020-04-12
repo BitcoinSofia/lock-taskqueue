@@ -1,8 +1,15 @@
 # Lock - Task Queue
 
+
 A super simple locking mechanism. Works like a task queue.
 
-## Example
+### Install
+
+```
+npm i --save lock-taskqueue
+```
+
+### Example
 
 ```js
 const Lock = require("lock-taskqueue");
